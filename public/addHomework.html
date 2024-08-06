@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Homework</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            margin-top: 50px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+        .card {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .add-passage-btn, .submit-btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container form-container">
+        <h1 class="text-center mb-4">Add Homework</h1>
+        <form id="homeworkForm">
+            <!-- Homework Details -->
+            <div class="card mb-4">
+                <div class="card-header">Homework Details</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="courseID">Course ID:</label>
+                        <input type="text" class="form-control" id="courseID" name="courseID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="homeworkTitle">Homework Title:</label>
+                        <input type="text" class="form-control" id="homeworkTitle" name="homeworkTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dueDate">Due Date:</label>
+                        <input type="date" class="form-control" id="dueDate" name="dueDate" required>
+                      </div>
+                </div>
+            </div>
+
+            <!-- Passage Details -->
+            <div class="card mb-4">
+                <div class="card-header">Passages and Questions</div>
+                <div class="card-body" id="passagesContainer">
+                    <div class="passage">
+                        <div class="form-group">
+                            <label for="passageType1">Passage Type:</label>
+                            <select class="form-control" id="passageType1" name="passageType1">
+                                <option value="text">Text</option>
+                                <option value="image">Image</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="content1">Passage Content:</label>
+                            <textarea class="form-control" id="content1" name="content1" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="questionText1-1">Question 1 Text:</label>
+                            <textarea class="form-control" id="questionText1-1" name="questionText1-1" rows="2" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="option1-1a">Option A:</label>
+                            <input type="text" class="form-control" id="option1-1a" name="option1-1a" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="option1-1b">Option B:</label>
+                            <input type="text" class="form-control" id="option1-1b" name="option1-1b" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="option1-1c">Option C:</label>
+                            <input type="text" class="form-control" id="option1-1c" name="option1-1c" required>
+                        </div>
+                     
+                          
+                        <div class="form-group">
+                            <label for="option1-1d">Option D:</label>
+                            <input type="text" class="form-control" id="option1-1d" name="option1-1d" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="correctOption1-1">Correct Option:</label>
+                            <select class="form-control" id="correctOption1-1" name="correctOption1-1">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary add-passage-btn" onclick="addPassage()">Add Another Passage</button>
+            <button type="submit" class="btn btn-success submit-btn">Submit Homework</button>
+        </form>
+    </div>
+
+    <script>
+        let passageCount = 1;
+
+        function addPassage() {
+            passageCount++;
+            const passagesContainer = document.getElementById('passagesContainer');
+            const newPassage = document.createElement('div');
+            newPassage.classList.add('passage');
+
+            newPassage.innerHTML = `
+                <hr>
+                <div class="form-group">
+                    <label for="passageType${passageCount}">Passage Type:</label>
+                    <select class="form-control" id="passageType${passageCount}" name="passageType${passageCount}">
+                        <option value="text">Text</option>
+                        <option value="image">Image</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="content${passageCount}">Passage Content:</label>
+                    <textarea class="form-control" id="content${passageCount}" name="content${passageCount}" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="questionText${passageCount}-1">Question 1 Text:</label>
+                    <textarea class="form-control" id="questionText${passageCount}-1" name="questionText${passageCount}-1" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="option${passageCount}-1a">Option A:</label>
+                    <input type="text" class="form-control" id="option${passageCount}-1a" name="option${passageCount}-1a" required>
+                </div>
+                <div class="form-group">
+                    <label for="option${passageCount}-1b">Option B:</label>
+                    <input type="text" class="form-control" id="option${passageCount}-1b" name="option${passageCount}-1b" required>
+                </div>
+                <div class="form-group">
+                    <label for="option${passageCount}-1c">Option C:</label>
+                    <input type="text" class="form-control" id="option${passageCount}-1c" name="option${passageCount}-1c" required>
+                </div>
+                <div class="form-group">
+                    <label for="option${passageCount}-1d">Option D:</label>
+                    <input type="text" class="form-control" id="option${passageCount}-1d" name="option${passageCount}-1d" required>
+                </div>
+                <div class="form-group">
+                    <label for="correctOption${passageCount}-1">Correct Option:</label>
+                    <select class="form-control" id="correctOption${passageCount}-1" name="correctOption${passageCount}-1">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </select>
+                </div>
+            `;
+            passagesContainer.appendChild(newPassage);
+        }
+
+        document.getElementById('homeworkForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            formData.append('passageCount', passageCount);
+
+            fetch('/add-homework', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json())
+              .then(data => {
+                  if (data.error) {
+                      alert(`Error: ${data.error}`);
+                  } else {
+                      alert('Homework added successfully!');
+                      // Redirect or reset form as needed
+                  }
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+              });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Attendance Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .attendance-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .attendance-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .attendance-label {
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .attendance-select, .attendance-input, .attendance-button {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .attendance-button {
+            background-color: #003366;
+            width: 250px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .attendance-button:hover {
+            background-color: black;
+            transition: .7s;
+        }
+        .student-list > div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .student-name {
+            flex: 1;
+            font-weight: bold;
+            color: #333;
+        }
+        .attendance-radio-label {
+            margin-right: 10px;
+        }
+
+        .home-btn a{
+            text-decoration: none;
+            color: white;
+        }
+        .home-btn{
+            background-color: #003366;
+            width: 200px;
+            padding: 15px;
+            border-radius: 30px;
+            cursor: pointer;
+
+        }
+        .home-btn:hover{
+            transition: .7s;
+            background-color: black;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <button class="home-btn link" ><a  href="index.html"> Home</a></button>
+    <h2>Attendance</h2>
+    
+    <!-- Create New Attendance Session -->
+    <section class="attendance-section" id="create-attendance-session">
+        <h2>Create New Attendance Session</h2>
+        <form class="attendance-form" id="create-session-form">
+            <label class="attendance-label" for="attendance-course-select">Select Course:</label>
+            <select class="attendance-select" id="attendance-course-select" name="course_id" onchange="fetchAttendanceSessions(); fetchEnrolledStudents();">
+                <!-- Options populated from the backend -->
+            </select>
+            
+            <label class="attendance-label" for="attendance-session-date">Session Date:</label>
+            <input class="attendance-input" type="date" id="attendance-session-date" name="session_date" required>
+            
+            <button class="attendance-button" type="submit">Create Session</button>
+        </form>
+    </section>
+    
+    <!-- Mark Attendance -->
+    <section class="attendance-section" id="mark-attendance">
+        <h2>Mark Attendance</h2>
+        <form class="attendance-form" id="mark-attendance-form">
+            <label class="attendance-label" for="attendance-session-select">Select Session:</label>
+            <select class="attendance-select" id="attendance-session-select" name="session_id">
+                <option value="">Select Session</option>
+                <!-- Options populated from the backend -->
+            </select>
+            
+            <div id="student-list" class="student-list">
+                <!-- List of students populated from the backend -->
+            </div>
+            
+            <button class="attendance-button" type="submit">Submit Attendance</button>
+        </form>
+    </section>
+    
+    <script>
+        // Function to fetch courses and populate the dropdown
+        function fetchAttendanceCourses() {
+            fetch('/get-courses')
+                .then(response => response.json())
+                .then(data => {
+                    const courseSelect = document.getElementById('attendance-course-select');
+                    data.forEach(course => {
+                        const option = document.createElement('option');
+                        option.value = course.course_id;
+                        option.textContent = course.course_name;
+                        courseSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching courses:', error));
+        }
+    
+        // Function to fetch sessions for the selected course and populate the dropdown
+        function fetchAttendanceSessions() {
+            const courseId = document.getElementById('attendance-course-select').value;
+            fetch(`/get-sessions/${courseId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const sessionSelect = document.getElementById('attendance-session-select');
+                    sessionSelect.innerHTML = '<option value="">Select Session</option>'; // Clear previous options
+                    data.forEach(session => {
+                        const option = document.createElement('option');
+                        option.value = session.session_id;
+                        option.textContent = new Date(session.session_date).toLocaleDateString();
+                        sessionSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching sessions:', error));
+        }
+    
+        // Function to fetch enrolled students for the selected course
+        function fetchEnrolledStudents() {
+            const courseId = document.getElementById('attendance-course-select').value;
+            if (!courseId) return; // No course selected
+            
+            fetch(`/get-enrolled-users/${courseId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const studentList = document.getElementById('student-list');
+                    studentList.innerHTML = ''; // Clear previous list
+    
+                    data.forEach(student => {
+                        const studentItem = document.createElement('div');
+                        studentItem.innerHTML = `
+                            <span class="student-name">${student.full_name}</span>
+                            <label class="attendance-radio-label">
+                                <input type="radio" name="attendance_status_${student.user_id}" value="present"> Present
+                            </label>
+                            <label class="attendance-radio-label">
+                                <input type="radio" name="attendance_status_${student.user_id}" value="absent"> Absent
+                            </label>
+                        `;
+                        studentList.appendChild(studentItem);
+                    });
+                })
+                .catch(error => console.error('Error fetching enrolled students:', error));
+        }
+    
+        // Fetch courses on page load
+        document.addEventListener('DOMContentLoaded', fetchAttendanceCourses);
+    
+        // Event listener for creating a new attendance session
+        document.getElementById('create-session-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const courseSelect = document.getElementById('attendance-course-select');
+            const sessionDate = document.getElementById('attendance-session-date').value;
+    
+            fetch('/attendance/sessions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    course_id: courseSelect.value,
+                    session_date: sessionDate
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Session created successfully!');
+                // Refresh the session dropdown after creating a new session
+                fetchAttendanceSessions();
+            })
+            .catch(error => console.error('Error creating session:', error));
+        });
+    
+        // Event listener for submitting attendance
+        document.getElementById('mark-attendance-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const sessionId = document.getElementById('attendance-session-select').value;
+            if (!sessionId) {
+                alert('Please select a session before submitting attendance.');
+                return;
+            }
+    
+            const studentList = document.getElementById('student-list').children;
+    
+            Array.from(studentList).forEach(studentDiv => {
+                const userId = studentDiv.querySelector('input[type="radio"]').name.split('_')[2];
+                const status = studentDiv.querySelector('input[type="radio"]:checked').value;
+    
+                fetch('/attendance/records', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        session_id: sessionId,
+                        user_id: userId,
+                        status: status
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Attendance recorded:', data);
+                })
+                .catch(error => console.error('Error recording attendance:', error));
+            });
+    
+            alert('Attendance submitted successfully!');
+        });
+    </script>
+</body>
+</html>

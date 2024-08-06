@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayada Academy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .validation-message {
+            text-align: center;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="back-img">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light animated fadeInDown">
+            <a class="navbar-brand d-flex align-items-center" href="#" style="text-decoration:none;">
+              <a href="index.html"   style="color:#003366">
+                <img src="images/FinalLogo.png" alt="Mayada Logo" class="logo">
+                <h2 class="nav-title mb-0 ml-3" style="display: inline-block; ">Academy</h2>
+            </a>
+            
+            
+            
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+              <ul class="navbar-nav text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/#scores">Scores</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/#Team">Team</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/#courses">Courses</a>
+                  </li>
+                <li class="nav-item d-lg-none">
+                  <a class="btn btn-primary login-btn mb-2" href="login.html">Login</a>
+                </li>
+                <li class="nav-item d-lg-none">
+                  <a class="btn btn-dark signup-btn mb-2" href="signup.html">Sign Up</a>
+                </li>
+              </ul>
+            </div>
+            <div class="navbar-nav ml-auto d-none d-lg-flex">
+              <a class="btn btn-primary mr-2 mb-2 login-btn" href="login.html">Login</a>
+              <a class="btn btn-dark signup-btn mb-2"  href="signup.html">Sign Up</a>
+            </div>
+          </nav>
+        <div class="login-container" data-aos="fade-left" data-aos-anchor="#example-anchor" data-aos-offset="500"
+            data-aos-duration="500">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12 mt-5">
+                    <div class="login-img-cont">
+                        <img src="images/Sign up-pana.png" class="w-100">
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12 col-sm-12 text-center">
+                    <div class="login-form position-relative">
+                        
+                        <form id="signupForm" action="/signup" method="POST">
+                            
+                            <div id="validationMessage" class="validation-message"></div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" id="fullName" placeholder="Full Name" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" id="phone" placeholder="Phone" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" id="parentPhone" placeholder="Parent Phone" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" id="parentName" placeholder="Parent Name" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="email" class="form-control" id="parentEmail" placeholder="Parent email" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary sign-in-Btn mt-5">Sign Up</button>
+                            <p>Already a member? <a href="login.html">Log in</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.9.15/libphonenumber-js.min.js"></script>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            var validationMessageDiv = document.getElementById("validationMessage");
+            validationMessageDiv.innerHTML = '';
+        
+            var fullName = document.getElementById("fullName").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var password = document.getElementById("password").value.trim();
+            var confirmPassword = document.getElementById("confirmPassword").value.trim();
+            var phone = document.getElementById("phone").value.trim();
+            var parentPhone = document.getElementById("parentPhone").value.trim();
+            var parentName = document.getElementById("parentName").value.trim();
+            var parentEmail = document.getElementById("parentEmail").value.trim();
+        
+            if (!fullName || !email || !password || !phone || !parentPhone || !parentName || !parentEmail) {
+                validationMessageDiv.innerHTML = '<div class="alert alert-danger">All fields are required.</div>';
+                return;
+            }
+        
+            if (password !== confirmPassword) {
+                validationMessageDiv.innerHTML = '<div class="alert alert-danger">Passwords do not match.</div>';
+                return;
+            }
+        
+            function isValidNumber(number) {
+                const validPrefixes = ['2010', '2011', '2012', '2015'];
+                return /^\d{12}$/.test(number) && validPrefixes.includes(number.substring(0, 4));
+            }
+        
+            if (!isValidNumber(phone)) {
+                validationMessageDiv.innerHTML = '<div class="alert alert-danger">Number must be 12 digits long and include a country code</div>';
+                return;
+            }
+        
+            if (!isValidNumber(parentPhone)) {
+                validationMessageDiv.innerHTML = '<div class="alert alert-danger">Parent phone number must be 12 digits long and include a country code.</div>';
+                return;
+            }
+        
+            if (email === parentEmail) {
+                validationMessageDiv.innerHTML = '<div class="alert alert-danger">Emails cannot be the same</div>';
+                return;
+            }
+        
+            if (phone === parentPhone) {
+                validationMessageDiv.innerHTML = '<div class="alert alert-danger">Phones cannot be the same</div>';
+                return;
+            }
+        
+            try {
+                const response = await fetch('/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        full_name: fullName,
+                        email: email,
+                        password: password,
+                        phone: phone,
+                        parent_phone: parentPhone,
+                        parent_name: parentName,
+                        parent_email: parentEmail
+                    })
+                });
+        
+                const result = await response.json();
+        
+                if (response.ok) {
+                    validationMessageDiv.innerHTML = `<div class="alert alert-success">${result.message}</div>`;
+                    setTimeout(() => {
+                        window.location.href = "login.html";
+                    }, 1000); // Redirect after 1 second
+                } else {
+                    validationMessageDiv.innerHTML = `<div class="alert alert-danger">${result.error}</div>`;
+                }
+            } catch (error) {
+                validationMessageDiv.innerHTML = `<div class="alert alert-danger">An error occurred: ${error.message}</div>`;
+            }
+        });
+        
+                
+    </script>
+    
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/6f194504f2.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

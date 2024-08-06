@@ -1,0 +1,694 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: #333;
+  overflow-x: hidden;
+}
+
+
+.navbar {
+  padding: 0.5rem;
+  /* animation: fadeInDown 1.5s ease-in-out; */
+}
+
+.nav-link {
+  color: #003366;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+  margin-right: 20px;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: #1a1a1a;
+  transition: width 0.4s ease;
+  -webkit-transition: width 0.4s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+  background: #003366;
+}
+
+.login-btn {
+  background-color: #023e8a;
+  padding: 10px;
+  width: 100px;
+  border-radius: 25px;
+}
+
+.login-btn:hover {
+  background-color: #1a1a1a;
+  color: white;
+  transition: 0.7s;
+}
+
+.signup-btn {
+  background-color: black;
+  padding: 10px;
+  width: 100px;
+  border-radius: 25px;
+}
+
+.signup-btn:hover {
+  background-color: #023e8a;
+}
+
+.hero-section {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  width: 100%;
+
+
+}
+
+#footer {
+  background: #003366;
+  padding: 30px 0;
+  color: #fff;
+}
+
+#footer .copyright {
+  text-align: center;
+}
+
+#footer .credits {
+  padding-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #ccc;
+}
+
+/* Add this CSS rule */
+#footer .social .fa {
+  padding:15px;
+  border-radius: 25px;
+  color: #fff;
+}
+.social-link:hover i{
+  color: #1a1a1a !important;
+  transition: .6s;;
+
+}
+.social-link:hover .fa{
+  background-color: white!important;
+  transition: .6s;
+}
+
+.nav-title {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.logo {
+  width: 100px;
+}
+
+.hero-text {
+  /* animation: fadeInLeft 1.5s ease-in-out; */
+}
+
+.hero-image {
+  border-radius: 50%;
+  /* animation: fadeInRight 1.5s ease-in-out; */
+}
+
+.btn-custom {
+  background-color: #003366;
+  color: #fff;
+  padding: 15px;
+  border-radius: 20px;
+  /* animation: bounceIn 1.5s ease-in-out; */
+}
+
+.btn-custom:hover {
+  background-color: black;
+  color: white;
+  transition: 0.7s;
+}
+
+/* @keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated {
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
+}
+
+.fadeInLeft {
+  animation-name: fadeInLeft;
+}
+
+.fadeInRight {
+  animation-name: fadeInRight;
+}
+
+.bounceIn {
+  animation-name: bounceIn;
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+} */
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+
+  .hero-text {
+    margin-left: 0;
+    max-width: 100%;
+    text-align: center;
+  }
+  .hero-image {
+    margin-top: 20px;
+    max-width: 100%;
+  }
+  .nav-title {
+    font-size: 1.2rem;
+  }
+  .nav-link {
+    font-size: 0.9rem;
+    margin-right: 10px;
+  }
+  .btn-custom {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-text {
+    margin-left: 0;
+    max-width: 100%;
+    text-align: center;
+  }
+  .hero-image {
+    margin-top: 20px;
+    max-width: 100%;
+  }
+  .nav-title {
+    font-size: 1.2rem;
+  }
+  .nav-link {
+    font-size: 0.9rem;
+    margin-right: 10px;
+  }
+  .btn-custom {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+/* end of hero section */
+
+#Team {
+  margin-top: 60px;
+  padding: 30px;
+}
+
+.team-title img {
+  /* display: flex; */
+  max-width: 140px;
+  margin-left: 20px;
+}
+
+
+#carousel-team img{
+  max-height: 200px !important;
+}
+.team-title strong {
+  color: #003366;
+}
+
+.team-img{
+  max-height: 330px;
+
+}
+
+.team-text p {
+  font-weight: bolder;
+  line-height: 39px;
+  margin-bottom: 40px;
+  color: black;
+}
+
+.team-btn button {
+  background-color: #023e8a;
+  padding: 10px;
+  width: 100px;
+  border-radius: 25px;
+  color: white;
+  margin-bottom: 20px;
+  animation-name: bounceIn;
+}
+.team-btn button:hover {
+  background-color: black;
+  color: white;
+  transition: 0.7s;
+}
+
+.swiper-slide img {
+  max-width: 340px;
+  margin: auto;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  color: #5196da !important;
+  /* display: hidden!important; */
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #b80101;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  font-size: 15px;
+  background: #b80101;
+  padding: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 36px;
+  color: #f7edee;
+  size: 15px;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 20px;
+}
+/* Keyframes for animations */
+/* Keyframes for animations */
+
+.back-img {
+  width: 100%;
+  height: 86%;
+  background-color: #f8f9fa;
+}
+
+.login-container {
+  background-color: #003366;
+  width: 80%;
+  height: 90%;
+  color: white;
+  margin: auto;
+  border-radius: 50px;
+  padding: 20px;
+  box-shadow: 23px 23px 15px gray;
+  margin-bottom: 70px;
+}
+.sign-in-Btn {
+  background-color: black;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 15px;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+.sign-in-Btn:hover {
+  background-color: #003366;
+  border: 1px solid black;
+  transition: 0.7s;
+}
+.login-form {
+  margin-top: 160px;
+}
+.form-control {
+  width: 230px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  margin: auto;
+}
+
+.login-form p {
+  opacity: 0.4;
+  margin-top: 30px;
+  cursor: pointer;
+}
+.login-form p:hover {
+  opacity: 1;
+  transition: 0.7s;
+}
+.login-form a {
+  text-decoration: none;
+  color: white;
+}
+
+
+
+.flickity-carousel{
+  margin-top: 140px;
+  display: flex;
+  margin-bottom: 140px ;
+  
+}
+
+
+.scores-title h2{
+  margin-bottom: 40px;
+  font-weight: bolder;
+  color: #003366;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+
+.car-name{
+  font-size: 20px;
+  font-weight: bolder;
+  text-align: center;
+}
+.flick-item{
+  margin: auto;
+  width: 327px;
+  border: 4px solid #003366;
+  border-radius: 24px;
+  box-shadow: 10px 10px 10px 2px gray;
+
+}
+.flickity-page-dots .dot {
+  background: #003366  !important; /* Blue color for dots */
+  
+}
+
+
+
+
+.flick-item:hover{
+   background-color: #003366;
+   transition:.5s;
+   color: white;
+
+}
+.car-subject{
+  text-align: right;
+  margin-right: 15px;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 30px;
+  margin-left: 40px;
+}
+
+
+.car-score{
+  display: inline-block;
+  margin-left: 20px;
+}
+.car-score p{
+  font-weight: bold;
+}
+.score{
+  font-size: 25px;
+  background-color: #023e8a;
+  display: inline;
+  border-radius: 50%;
+  padding: 6px;
+  color: white;
+}
+
+.subject {
+  background-color:#023e8a ;
+  color: white;
+  padding: 6px;
+  display: inline;
+  font-size: 25px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.flick-item img{
+  max-width: 120px;
+  margin-top: 45px;
+  margin-left: 16px;
+  
+
+}
+
+.ACT{
+  background-color: rgb(18, 97, 18);
+}
+
+.ACT-score{
+  padding: 11px;
+  
+}
+
+
+#courses{
+  margin-bottom: 70px;
+  display: flex;
+  /* align-items: cente */
+  background-color: #f9f8f8;
+  padding: 20px;
+  justify-content: center;
+}
+
+.course-card{
+text-align: center;
+  border: 4px solid #003366;
+margin: auto;
+border-radius: 10px;
+background-color: white;
+box-shadow: 6px 6px  5px black;
+
+}
+.course-card  {}
+
+.course-img img{
+  width: 40%;
+
+
+  margin-top: 30px;
+  margin-bottom:20px ;
+}
+
+.courses-title{
+  margin-bottom:40px ;
+  text-align: center;
+  font-size: 35px;
+  font-weight: bolder;
+  color: #003366;
+}
+
+.course-title{
+  font-weight: bolder;
+  color: #003366;
+  margin-bottom:20px ;
+
+
+}
+.course-location{
+  opacity: .5;
+  margin-bottom:20px ;
+
+}
+
+.course-instructor{
+  color: #023e8a;
+  margin-bottom: 30px;
+  font-weight: bolder;
+}
+
+.course-card{
+  cursor: pointer;
+}
+
+
+@media (max-width: 991.98px) {
+  #navbarNav .navbar-nav {
+      flex-direction: column;
+      width: 100%;
+  }
+
+  #loginSignup, #userDropdown {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+  }
+}
+
+.userName{
+  background-color: transparent;
+  color: #003366;
+  font-weight: bolder;
+  border: none;
+}
+
+.userName:hover{
+  background-color: transparent;
+  color: #003366;
+  font-weight: bolder;
+  border: none;
+}
+.next-btn{
+  background-color: #003366;
+  color: red;
+}
+
+#nextQuestion{
+  font-size: 300px;
+  background-color: #003366!important ;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: #003366;
+  color: white;
+  padding-top: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 15px;
+  margin: 5px 0;
+}
+
+.sidebar a:hover {
+  background-color: #002040;
+}
+
+.main-content {
+  margin-left: 200px;
+  padding: 20px;
+}
+
+.header {
+  background-color: #003366;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+
+.header .admin {
+  font-size: 24px;
+}
+
+.icon {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.card {
+  border: none;
+  text-align: center;
+}
+
+.card img {
+  margin: 0 auto;
+}
+
+.card-title {
+  text-transform: capitalize;
+  margin-top: 15px;
+}
+
+.btn-customs {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  background-color: #003366;
+  color: white;
+  border: none;
+}
+
+.btn-customs:hover {
+  background-color: black;
+  color: white;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.modal-body {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+#sendEmailsButton{
+  
+
+  background-color: #003366;
+  color: white;
+  border-radius: 10px;
+
+
+}

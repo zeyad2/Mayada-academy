@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayada Academy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" href="images/FinalLogo.png" type="image/png">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="author" content="Kareem Adel">
+    <meta name="generator" content="Kareem Adel">
+    <meta name="theme-name" content="Elkably" />
+
+    <style>
+        .navbar-nav {
+            margin: 0 auto;
+        }
+        .navbar-collapse {
+            justify-content: center;
+        }
+        .links {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .links a {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            margin: 0 0.5rem;
+        }
+        .links a:hover,
+        .links .active {
+            background: #003366;
+            color: white !important;
+            text-decoration: none !important;
+            border-left: 1px solid #dbc8ee;
+            border-right: 1px solid #dbc8ee;
+        }
+        .bg-dark-custom {
+            background-color: #003366;
+        }
+        .bg-light-custom {
+            background-color: #ddd;
+        }
+        .text-custom {
+            color: black;
+        }
+        .text-custom-icons {
+            color: #003366;
+        }
+        .border-custom {
+            border: 1px solid black;
+        }
+        table th {
+            background-color: #003366 !important;
+            color: white !important;
+        }
+        table tr:nth-child(even) td {
+            background-color: #f5c0c0;
+            color: black;
+        }
+        table tr:nth-child(odd) td {
+            background-color: white;
+            color: black;
+        }
+        .hr {
+            border: 1px solid black !important;
+        }
+        @media(max-width: 991.9px) {
+            .links a {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="main-body bg-primary-transparent" data-bs-spy="scroll" data-bs-target="#navbarExample">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light animated fadeInDown">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="images/FinalLogo.png" alt="Mayada Logo" class="logo" data-aos="fade-right">
+            <h1 class="nav-title mb-0 ml-2" data-aos="fade-right">Academy</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav" data-aos="fade-left">
+            <ul class="navbar-nav text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="/#Home" onclick="smoothScroll('Home')">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#scores" onclick="smoothScroll('act-scores-section')">Scores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#Team" onclick="smoothScroll('Team')">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#Courses" onclick="smoothScroll('')">Courses</a>
+                </li>
+            </ul>
+            <div class="navbar-nav ml-auto" id="loginSignup">
+                <a class="btn btn-primary mr-2 login-btn" href="login.html">Login</a>
+                <a class="btn btn-dark mr-2 signup-btn" href="signup.html">Sign Up</a>
+            </div>
+            <div class="navbar-nav ml-auto d-none" id="userDropdown">
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle userName" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Welcome, <span id="userName"></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#" id="profileLink">Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" id="logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container myprofile" style="margin-top: 110px">
+        <div class="row row-sm">
+            <div class="col-lg-12">
+                <div class="card mg-b-20" style="border: none">
+                    <div class="card-body bg-body px-0">
+                        <div class="pl-0">
+                            <div class="main-profile-overview">
+                                <div class="text-center">
+                                    <div class="main-img-user profile-user second-background text-center mx-auto">
+                                        <img width="120px" alt="" src="https://www.elkably.com/assets/img/boy.png">
+                                    </div>
+                                </div>
+                                <div class=" justify-content-between mg-b-20">
+                                    <div>
+                                        <h5 class="main-profile-name text-center"></h5>
+                                        <p class="main-profile-name-text text-center mt-2"></p>
+                                    </div>
+                                </div>
+                                <div class="links bg-light-custom border-custom mb-3">
+                                    <a class="text-center pt-2 pb-3 px-6" href="user.html" id="personal-data" style="color: #003366; font-weight: bolder;">Personal Data</a>
+                                    <a class="text-center pt-2 pb-3 px-6" href="user_exam.html" id="exams-data" style="color: #003366; font-weight: bolder;">Exams Results</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-sm mb-5" dir="ltr">
+            <div class="col-lg-12 mx-auto">
+                <div class="row row-sm">
+                    <div class="col-lg-12">
+                        <table class="table table-striped key-buttons text-md-nowrap br-dark-purple">
+                            <thead>
+                                <tr>
+                                    <th class="border-bottom-0 text-center">##</th>
+                                    <th class="border-bottom-0 text-center">Exam Title</th>
+                                    <th class="border-bottom-0 text-center">Exam Grade</th>
+                                    <th class="border-bottom-0 text-center">Homework Title</th>
+                                    <th class="border-bottom-0 text-center">Homework Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://kit.fontawesome.com/6f194504f2.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <script>
+    AOS.init();
+
+    document.addEventListener("DOMContentLoaded", function () {
+        AOS.init();
+
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if (user) {
+            const nameParts = user.full_name.split(' ');
+            const trimmedName = nameParts.slice(0, 2).join(' ');
+
+            document.getElementById('userName').innerText = trimmedName;
+            document.getElementById('userDropdown').classList.remove('d-none');
+            document.getElementById('loginSignup').classList.add('d-none');
+
+            const userId = user.user_id;
+
+            // Fetching test grades
+            fetch(`/user-test-grades/${userId}`)
+                .then(response => response.json())
+                .then(testData => {
+                    const tbody = document.querySelector('tbody');
+                    testData.forEach((grade, index) => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td class="text-center">${index + 1}</td>
+                            <td class="text-center">${grade.exam_title}</td>
+                            <td class="text-center">${grade.exam_grade} / ${grade.total_questions}</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">-</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching test grades:', error));
+
+            // Fetching homework grades
+            fetch(`/user-homework-grades/${userId}`)
+                .then(response => response.json())
+                .then(homeworkData => {
+                    const tbody = document.querySelector('tbody');
+                    homeworkData.forEach((grade, index) => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td class="text-center">${index + 1}</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">${grade.homework_title}</td>
+                            <td class="text-center">${grade.homework_grade} / ${grade.total_questions}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching homework grades:', error));
+
+            document.getElementById('logout').addEventListener('click', () => {
+                fetch('/logout', { method: 'GET' })
+                    .then(() => {
+                        localStorage.removeItem('user');
+                        window.location.href = '/';
+                    })
+                    .catch(error => {
+                        console.error('Error logging out:', error);
+                    });
+            });
+        }
+    });
+    </script>
+</body>
+</html>

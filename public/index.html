@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mayada Academy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+
+
+    <style>
+        .navbar-nav {
+            margin: 0 auto;
+        }
+        .navbar-collapse {
+            justify-content: center;
+        }
+
+        .course-title{
+            text-transform: capitalize;
+        }
+
+        .flick-img img {
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover; 
+    display: block; 
+}
+
+.courses-title{
+    font-weight: bolder;
+
+}
+
+.team-carousel {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.carousel-cell {
+    width: 100%;
+}
+
+.team-img {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .carousel-team {
+        height: auto;
+    }
+
+    .carousel-cell {
+        min-width: 80%;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light animated fadeInDown" >
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="images/FinalLogo.png" alt="Mayada Logo" class="logo" data-aos="fade-right">
+            <h1 class="nav-title mb-0 ml-2" data-aos="fade-right">Academy</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav" data-aos="fade-left">
+            <ul class="navbar-nav text-center mx-auto ">
+                <li class="nav-item">
+                    <a class="nav-link" href="#Home" onclick="smoothScroll('Home')">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#scores" onclick="smoothScroll('act-scores-section')">Scores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Team" onclick="smoothScroll('Team')">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#courses" onclick="smoothScroll('')">Courses</a>
+                </li>
+            </ul>
+
+            <div class="navbar-nav mx-auto justify-content-center" id="loginSignup">
+                <a class="btn btn-primary mr-2 login-btn mt-2" href="login.html">Login</a>
+                <a class="btn btn-dark mr-2 signup-btn mt-2" href="signup.html">Sign Up</a>
+            </div>
+
+            <div class="navbar-nav ml-auto d-none" id="userDropdown">
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle userName" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Welcome, <span id="userName"></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#" id="profileLink">Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" id="logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+        
+
+
+    <!-- Hero Section -->
+
+
+    <section class="hero-section" id="Home">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+                <div class="hero-text col-lg-6 col-sm-12 text-center text-lg-left animated fadeInLeft" data-aos="fade-left">
+                    <h1>Read <span style="color: #003366;">Smart</span>,<br> Write <span
+                            style="color: #00aaff;">Sharp</span>,<br> Score <span style="color: #99ccff;">High</span>!</h1>
+                    <button class="btn btn-custom mt-3 animated bounceIn hero-btn">Unleash Your Potential</button>
+                </div>
+                <div class="hero-image col-lg-6 col-sm-12 animated fadeInRight" data-aos="fade-right">
+                    <img src="images/Hero-img.png" alt="Hero Image" class="img-fluid">
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+    </section>
+
+
+    <section id="Team">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="Team-content" data-aos="fade-up" data-aos-duration="15000">
+                        <div class="team-title text-center">
+                            <h3>Our <strong>Family</strong> <img src="images/FinalLogo.png" alt=""></h3>
+                        </div>
+                        <div class="team-text">
+                            <p fw-3>
+                                At Mayada Academy, our team is a family. United by a passion for education, we create a
+                                nurturing and supportive environment. Together, we guide our students to success and
+                                help them reach their full potential.
+                            </p>
+                        </div>
+                        <div class="team-btn text-center">
+                            <button class="btn">Join Us</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="team-carousel" data-aos="fade-down">
+                        <div class="carousel-team"
+                            data-flickity='{ "cellAlign": "center", "wrapAround": true, "autoPlay": true, "fade": true, "groupCells":true }'>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_14.jpeg" class=""
+                                    alt="Team member 14">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_1.jpeg" class=""
+                                    alt="Team member 1">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_2.jpeg" class=""
+                                    alt="Team member 2">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_3.jpeg" class=""
+                                    alt="Team member 3">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_4.jpeg" class=""
+                                    alt="Team member 4">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_5.jpeg" class=""
+                                    alt="Team member 5">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_6.jpeg" class=""
+                                    alt="Team member 6">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_7.jpeg" class=""
+                                    alt="Team member 7">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_8.jpeg" class=""
+                                    alt="Team member 8">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_9.jpeg" class=""
+                                    alt="Team member 9">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_10.jpeg" class=""
+                                    alt="Team member 10">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_11.jpeg" class=""
+                                    alt="Team member 11">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_12.jpeg" class=""
+                                    alt="Team member 12">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_13.jpeg" class=""
+                                    alt="Team member 13">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_15.jpeg" class=""
+                                    alt="Team member 15">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_16.jpeg" class=""
+                                    alt="Team member 16">
+                            </div>
+                            <div class="carousel-cell">
+                                <img class="team-img"
+                                    src="images/ASSIS/ASSIS_17.jpeg" class=""
+                                    alt="Team member 17">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <div class="flickity-carousel" id="scores">
+        <div class="container">
+            <div class="scores-title" data-aos="fade-down">
+                <h2>Our Top Scorers</h2>
+            </div>
+            
+            <div class="carousel" data-aos="fade-left">
+
+                <div class="carousel-cell col-xl-4 col-lg-6  col-md-12 ">
+                    <div class="flick-item">
+                        <div class="row">
+
+                            <div class="col-xm-4">
+                                <div class="flick-img">
+                                    <img src="images/Top/WhatsApp Image 2024-08-04 at 1.02.32 AM (2).jpeg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-xm-8">
+                                <div class="car-name">
+                                    <p>Ahmed Issa</p>
+                                    <hr>
+                                </div>
+
+                                <div class="car-subject">
+                                    <p>Subject</p>
+                                    <p class="subject ACT">EST</p>
+                                </div>
+
+                                <div class="car-score">
+                                    <p>Score</p>
+                                    <p class="score ACT-score">740</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-cell col-xl-4 col-lg-6 col-md-12">
+                    <div class="flick-item">
+                        <div class="row">
+                            <div class="col-xm-4">
+                                <div class="flick-img">
+                                    <img src="images/Top/WhatsApp Image 2024-08-04 at 12.25.01 AM.jpeg" alt="">
+                                </div>
+                            </div>
+                            <div class="col-xm-8">
+                                <div class="car-name">
+                                    <p>Farah Wael</p>
+                                    <hr>
+                                </div>
+                                <div class="car-subject">
+                                    <p>Subject</p>
+                                    <p class="subject ACT">ACT</p>
+                                </div>
+                                <div class="car-score">
+                                    <p>Score</p>
+                                    <p class="score ACT-score">30</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-cell col-xl-4 col-lg-6  col-md-12 ">
+                    <div class="flick-item">
+                        <div class="row">
+
+                            <div class="col-xm-4">
+                                <div class="flick-img">
+                                    <img src="images/Top/WhatsApp Image 2024-08-04 at 12.25.02 AM (1).jpeg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-xm-8">
+                                <div class="car-name">
+                                    <p>Judy Ahmed</p>
+                                    <hr>
+                                </div>
+
+                                <div class="car-subject">
+                                    <p>Subject</p>
+                                    <p class="subject">ACT</p>
+                                </div>
+
+                                <div class="car-score">
+                                    <p>Score</p>
+                                    <p class="score">31</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-cell col-xl-4 col-lg-6  col-md-12 ">
+                    <div class="flick-item">
+                        <div class="row">
+
+                            <div class="col-xm-4">
+                                <div class="flick-img">
+                                    <img src="images/Top/WhatsApp Image 2024-08-04 at 12.25.02 AM (2).jpeg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-xm-8">
+                                <div class="car-name">
+                                    <p>Mohamed Sayed</p>
+                                    <hr>
+                                </div>
+
+                                <div class="car-subject">
+                                    <p>Subject</p>
+                                    <p class="subject ACT">ACT</p>
+                                </div>
+
+                                <div class="car-score">
+                                    <p>Score</p>
+                                    <p class="score ACT-score">34</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-cell col-xl-4 col-lg-6  col-md-12 ">
+                    <div class="flick-item">
+                        <div class="row">
+
+                            <div class="col-xm-4">
+                                <div class="flick-img">
+                                    <img src="images/Top/WhatsApp Image 2024-08-04 at 12.25.03 AM (1).jpeg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-xm-8">
+                                <div class="car-name">
+                                    <p>Mohamed Adel</p>
+                                    <hr>
+                                </div>
+
+                                <div class="car-subject">
+                                    <p>Subject</p>
+                                    <p class="subject">ACT</p>
+                                </div>
+
+                                <div class="car-score">
+                                    <p>Score</p>
+                                    <p class="score">35</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-cell col-xl-4 col-lg-6  col-md-12 ">
+                    <div class="flick-item">
+                        <div class="row">
+
+                            <div class="col-xm-4">
+                                <div class="flick-img">
+                                    <img src="images/Top/WhatsApp Image 2024-08-04 at 12.25.04 AM (1).jpeg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-xm-8">
+                                <div class="car-name">
+                                    <p>Mohamed Ahmed</p>
+                                    <hr>
+                                </div>
+
+                                <div class="car-subject">
+                                    <p>Subject</p>
+                                    <p class="subject ACT">EST</p>
+                                </div>
+
+                                <div class="car-score">
+                                    <p>Score</p>
+                                    <p class="score ACT-score">680</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-cell col-xl-4 col-lg-6  col-md-12 ">
+                    <div class="flick-item">
+                        <div class="row">
+
+                            <div class="col-xm-4">
+                                <div class="flick-img">
+                                    <img src="images/Top/WhatsApp Image 2024-08-04 at 12.25.05 AM.jpeg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-xm-8">
+                                <div class="car-name">
+                                    <p>Ahmed Helmy</p>
+                                    <hr>
+                                </div>
+
+                                <div class="car-subject">
+                                    <p>Subject</p>
+                                    <p class="subject">EST</p>
+                                </div>
+
+                                <div class="car-score">
+                                    <p>Score</p>
+                                    <p class="score">610</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-cell col-xl-4 col-lg-6  col-md-12 ">
+                    <div class="flick-item">
+                        <div class="row">
+
+                            <div class="col-xm-4">
+                                <div class="flick-img">
+                                    <img src="images/Top/WhatsApp Image 2024-08-04 at 1.02.32 AM (1).jpeg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-xm-8">
+                                <div class="car-name">
+                                    <p>Jana Youssef</p>
+                                    <hr>
+                                </div>
+
+                                <div class="car-subject">
+                                    <p>Subject</p>
+                                    <p class="subject ACT">ACT</p>
+                                </div>
+
+                                <div class="car-score">
+                                    <p>Score</p>
+                                    <p class="score ACT-score">32</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-cell col-xl-4 col-lg-6  col-md-12 ">
+                    <div class="flick-item">
+                        <div class="row">
+
+                            <div class="col-xm-4">
+                                <div class="flick-img">
+                                    <img src="images/Top/WhatsApp Image 2024-08-04 at 1.02.32 AM.jpeg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-xm-8">
+                                <div class="car-name">
+                                    <p>Mai Essam</p>
+                                    <hr>
+                                </div>
+
+                                <div class="car-subject">
+                                    <p>Subject</p>
+                                    <p class="subject">EST</p>
+                                </div>
+
+                                <div class="car-score">
+                                    <p>Score</p>
+                                    <p class="score">690</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-cell col-xl-4 col-lg-6  col-md-12 ">
+                    <div class="flick-item">
+                        <div class="row">
+
+                            <div class="col-xm-4">
+                                <div class="flick-img">
+                                    <img src="images/Top/WhatsApp Image 2024-08-04 at 12.25.04 AM.jpeg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-xm-8">
+                                <div class="car-name">
+                                    <p>Adam</p>
+                                    <hr>
+                                </div>
+
+                                <div class="car-subject">
+                                    <p>Subject</p>
+                                    <p class="subject">ACT</p>
+                                </div>
+
+                                <div class="car-score">
+                                    <p>Score</p>
+                                    <p class="score">32</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <!-- Additional Zeyad Mohamed items as needed -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <!-- Top Scorers Section -->
+
+
+    <div id="courses">
+        <div class="container">
+            <div class="courses-title" data-aos="fade-left">
+                <h2>Courses</h2>
+            </div>
+            <div class="row" id="courses-list">
+                <!-- Static course cards -->
+                <div class="col-lg-4">
+                    <div class="course-card">
+                        <div class="course-img">
+                            <img src="images/Online test-bro.png" alt="">
+                        </div>
+                        <div class="course-text">
+                            <h3 class="course-title">ACT Reading Basics</h3>
+                            <h6 class="course-location">El tagamoa center</h6>
+                            <h3 class="course-instructor">Mrs Mayada</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add more static course cards if needed -->
+            </div>
+        </div>
+    </div>
+
+
+    <footer id="footer" >
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+                <div class="container wow fadeInUp ">
+                    <div class="row"  >
+                      <div class="col-lg-12 text-center" data-aos="fade-up" >
+                        <h3 class="section-title">Contact Us</h3>
+                        <div class="section-title-divider"></div>
+                        <p class="section-description"></p>
+                      </div>
+                    </div>
+                
+                    <div class="social text-center mt-2"  data-aos="fade-down"  style="color: #ccc;">
+                      <a href="https://wa.me/201002979423" class="social-link"><i class="fa fa-whatsapp fa-2x mr-5"></i></a>
+                      <a href="" class="social-link"><i class="fa fa-facebook fa-2x mr-5"></i></a>
+                      <a href="https://www.instagram.com/mrs.mayada.ahmed?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link"><i class="fa fa-instagram fa-2x"></i></a>
+                    </div>
+                  </div>          
+                <div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- #footer -->
+
+
+
+
+    
+    <!-- Scripts -->
+    <!-- Scripts -->
+    <!-- Add this script tag to include Firebase -->
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://kit.fontawesome.com/6f194504f2.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        AOS.init();
+
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if (user) {
+            const nameParts = user.full_name.split(' ');
+            const trimmedName = nameParts.slice(0, 2).join(' ');
+
+            document.getElementById('userName').innerText = trimmedName;
+            document.getElementById('userDropdown').classList.remove('d-none');
+            document.getElementById('loginSignup').classList.add('d-none');
+
+            // Update profile links based on user role
+            const profileLink = document.getElementById('profileLink');
+            if (user.role === 'admin') {
+                profileLink.href = 'admin.html';
+            } else {
+                profileLink.href = 'user.html';
+            }
+        }
+
+        document.getElementById('logout').addEventListener('click', () => {
+            fetch('/logout', {
+                method: 'GET'
+            }).then(() => {
+                localStorage.removeItem('user');
+                window.location.href = '/';
+            }).catch(error => {
+                console.error('Error logging out:', error);
+            });
+        });
+
+        $('.carousel').flickity({
+            cellAlign: 'center',
+            wrapAround: true,
+            autoPlay: true,
+            fade: true,
+            initialIndex: 3,
+        });
+
+        function loadCourses() {
+            $.ajax({
+                url: '/get-courses',
+                method: 'GET',
+                success: function(courses) {
+
+                    displayCourses(courses);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching courses:", error);
+                }
+            });
+        }
+        function displayCourses(courses) {
+            var coursesList = $('#courses-list');
+            coursesList.empty();
+        
+            courses.forEach(function(course) {
+                var courseHtml = `
+                    <div class="col-lg-4 mb-4" data-aos="fade-right" >
+                        <a href="course.html?course_id=${course.course_id}">
+                            <div class="course-card">
+                                <div class="course-img">
+                                    <img src="/uploads/${course.image}" alt="${course.course_title}">
+                                </div>
+                                <div class="course-text">
+                                    <h3 class="course-title">${course.course_name}</h3>
+                                    <h6 class="course-location">${course.location}</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `;
+                console.log("Adding course:", courseHtml); // Add this line for debugging
+                coursesList.append(courseHtml);
+            });
+        }
+        
+
+        $(document).ready(function() {
+            loadCourses();
+        });
+    });
+</script>
+
+
+</body>
+
+</html>

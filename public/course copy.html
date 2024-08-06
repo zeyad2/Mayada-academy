@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.1/flickity.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .carousel-cell {
+            width: 500px;
+            height: 300px;
+            margin-right: 10px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        .carousel-cell iframe {
+            width: 100%;
+            height: 80%;
+            border-radius: 5px;
+        }
+        .lecture-title {
+            text-align: center;
+            margin-top: 10px;
+            color: #003366;
+            font-weight: bolder;
+        }
+        .section-title {
+            margin-top: 20px;
+            color: #003366;
+        }
+        #course-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .join-course-btn {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .not-enrolled-message {
+            display: none;
+        }
+
+        .acc-title{
+            color: #003366;
+            font-weight: bolder;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 id="course-title">Course Title</h1>
+        <div class="join-course-btn">
+            <button id="join-course-btn" class="btn btn-primary">Join Course</button>
+        </div>
+    </div>
+
+    <div class="container mt-4" id="accordion">
+        <!-- Lecture Section -->
+        <div class="card">
+            <div class="card-header" id="headingLectures">
+                <h2 class="mb-0">
+                    <button class="btn acc-title" type="button" data-toggle="collapse" data-target="#collapseLectures" aria-expanded="true" aria-controls="collapseLectures">
+                        Lectures
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseLectures" class="collapse show" aria-labelledby="headingLectures" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="lecture-carousel mt-4">
+                        <div class="carousel">
+                            <!-- Lecture items will be appended here dynamically -->
+                        </div>
+                        <div class="not-enrolled-message">
+                            <p>Please join the course to view the content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Homeworks Section -->
+        <div class="card">
+            <div class="card-header" id="headingHomeworks">
+                <h2 class="mb-0">
+                    <button class="btn acc-title collapsed" type="button" data-toggle="collapse" data-target="#collapseHomeworks" aria-expanded="false" aria-controls="collapseHomeworks">
+                        Homeworks
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseHomeworks" class="collapse" aria-labelledby="headingHomeworks" data-parent="#accordion">
+                <div class="card-body">
+                    <div id="homework-list" class="list-group">
+                        <!-- Homework items will be appended here dynamically -->
+                        <div class="not-enrolled-message">
+                            <p>Please join the course to view the content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tests Section -->
+        <div class="card">
+            <div class="card-header" id="headingTests">
+                <h2 class="mb-0">
+                    <button class="btn acc-title collapsed" type="button" data-toggle="collapse" data-target="#collapseTests" aria-expanded="false" aria-controls="collapseTests">
+                        Tests
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTests" class="collapse" aria-labelledby="headingTests" data-parent="#accordion">
+                <div class="card-body">
+                    <div id="test-list" class="list-group">
+                        <!-- Test items will be appended here dynamically -->
+                        <div class="not-enrolled-message">
+                            <p>Please join the course to view the content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.1/flickity.pkgd.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+   <script>
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('course_id');
+
+        // Retrieve user information from localStorage
+
+        const user = JSON.parse(localStorage.getItem('user'));
+         let full_name = user.full_name;     
+         let email = user.email;
+        
+     
+
+        console.log(`Fetching details for course ID: ${courseId}`);
+
+        $.get(`/check-enrollment?email=${email}&courseId=${courseId}`, function (data) {
+            if (data.enrolled) {
+                // User is enrolled, fetch and display course content
+                fetchCourseContent(courseId);
+                $('.not-enrolled-message').hide(); // Hide the join message if enrolled
+                $('.join-course-btn').hide(); // Hide the join button if enrolled
+            } else {
+                // User is not enrolled, display join course message and button
+                $('.not-enrolled-message').show(); // Show the join message
+                $('.join-course-btn').show(); // Show the join button
+                $('#join-course-btn').off('click').on('click', function () {
+                    joinCourse(courseId, email);
+                });
+            }
+        });
+
+        function fetchCourseContent(courseId) {
+            $.ajax({
+                url: `/courses/${courseId}`,
+                method: 'GET',
+                success: function(course) {
+                    populateCourseDetails(course);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching course data:', error);
+                }
+            });
+        }
+
+        function populateCourseDetails(course) {
+            $('#course-title').text(course.course.course_name);
+
+            const lectureCarousel = $('.carousel');
+            course.lectures.forEach(lecture => {
+
+                let videoUrl = lecture.video_url;
+                let embedUrl = '';
+
+                // Convert YouTube URLs to embed format
+                if (videoUrl.includes('youtube.com')) {
+                    const videoId = new URL(videoUrl).searchParams.get('v');
+                    embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                } else if (videoUrl.includes('youtu.be')) {
+                    const videoId = videoUrl.split('/').pop();
+                    embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                } else {
+                    embedUrl = videoUrl; // Use the original URL if it's already an embed URL
+                }
+
+                const lectureItem = `
+                    <div class="carousel-cell">
+                        <iframe src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="lecture-title">${lecture.lecture_title}</div>
+                    </div>
+                `;
+                lectureCarousel.append(lectureItem);
+            });
+
+            const homeworkList = $('#homework-list');
+            course.homeworks.forEach(homework => {
+
+                const homeworkItem = `
+                    <a href="#" class="list-group-item list-group-item-action">
+                        ${homework.title} - Grade: ${homework.grade}
+                    </a>
+                `;
+                homeworkList.append(homeworkItem);
+            });
+
+            const testList = $('#test-list');
+            course.tests.forEach(test => {
+                const testItem = `
+                    <a href="test.html?test_id=${test.test_id}" class="list-group-item list-group-item-action">
+                        ${test.test_title}
+                    </a>
+                `;
+                testList.append(testItem);
+            });
+
+            // Initialize Flickity after appending items
+            lectureCarousel.flickity({
+                groupCells: true
+            });
+        }
+
+
+        function joinCourse(courseId, email) {
+
+            $.post('/join-course', { full_name:full_name, courseId: courseId, email: email }, function(data) {
+                if (data.success) {
+                    alert("request submitted successfully");
+                } else {
+                    console.error('Error joining course:', data.error);
+                }
+            });
+
+        }
+   
+    });
+</script>
+
+    
+</body>
+</html>
